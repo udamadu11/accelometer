@@ -8,6 +8,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -24,7 +25,11 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     Sensor accerometer;
     SensorManager sm;
     ListView list;
+    ListView list2;
     ArrayList<Float> z = new ArrayList<Float>();
+    ArrayList<Float> x = new ArrayList<Float>();
+    private long timestamp;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,14 +43,25 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     public void onSensorChanged(SensorEvent event) {
 
         z.add(event.values[0]);
+
+        x.add((float) (SystemClock.elapsedRealtime() /100000L ));
         if(z.size() == 10){
             sm.unregisterListener(this,accerometer);
         }
+
         list = findViewById(R.id.list);
+        list2 = findViewById(id.list2);
+
         Log.d("Array List: ", String.valueOf(z));
+        //Log.d("Array List: ", String.valueOf(timestamp));
+
         ArrayAdapter adapter = new ArrayAdapter<Float>(this,
                 android.R.layout.simple_list_item_1, z);
         list.setAdapter(adapter);
+
+        ArrayAdapter adapter2 = new ArrayAdapter<Float>(this,
+                android.R.layout.simple_list_item_1, x);
+        list2.setAdapter(adapter2);
     }
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {

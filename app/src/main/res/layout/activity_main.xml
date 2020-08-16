@@ -17,21 +17,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         tools:layout_editor_absoluteY="561dp" />
 
-    <TextView
-        android:id="@+id/acceleration3"
-        android:layout_width="88dp"
-        android:layout_height="212dp"
-        android:layout_marginEnd="24dp"
-        android:text="X : Y : Z"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="143dp" />
-
     <ListView
         android:id="@+id/list"
         android:layout_width="128dp"
         android:layout_height="478dp"
         android:layout_marginEnd="236dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ListView
+        android:id="@+id/list2"
+        android:layout_width="98dp"
+        android:layout_height="465dp"
+        android:layout_marginEnd="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
