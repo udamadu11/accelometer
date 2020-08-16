@@ -31,9 +31,10 @@
         android:id="@+id/list"
         android:layout_width="128dp"
         android:layout_height="478dp"
-        android:layout_marginEnd="216dp"
+        android:layout_marginEnd="236dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="119dp" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
