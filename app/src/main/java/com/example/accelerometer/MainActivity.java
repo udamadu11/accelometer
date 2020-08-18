@@ -5,18 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
-import android.hardware.SensorListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
 
 import static com.example.accelerometer.R.*;
 
@@ -24,10 +20,12 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     Sensor accerometer;
     SensorManager sm;
-    ListView list;
-    ListView list2;
-    ArrayList<Float> z = new ArrayList<Float>();
-    ArrayList<Float> x = new ArrayList<Float>();
+    ListView list,list2,list3;
+    ArrayList<Float> z = new ArrayList<Float>(10);
+    ArrayList<Float> x = new ArrayList<Float>(10);
+    ArrayList<Float> y = new ArrayList<Float>(10);
+    Float v;
+
     private long timestamp;
 
     @Override
@@ -51,18 +49,37 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         list = findViewById(R.id.list);
         list2 = findViewById(id.list2);
+        list3 = findViewById(id.list3);
+        float mul = 0;
+        for(int i=0; i<x.size(); i++) {
+           float num1 = z.get(i);
+           float num2 = x.get(i);
+           mul = num1 * num2;
+           
+        }
+        y.add(mul);
 
         Log.d("Array List: ", String.valueOf(z));
-        //Log.d("Array List: ", String.valueOf(timestamp));
+        Log.d("Array List: ", String.valueOf(x));
 
         ArrayAdapter adapter = new ArrayAdapter<Float>(this,
                 android.R.layout.simple_list_item_1, z);
         list.setAdapter(adapter);
 
+
         ArrayAdapter adapter2 = new ArrayAdapter<Float>(this,
                 android.R.layout.simple_list_item_1, x);
         list2.setAdapter(adapter2);
+
+        ArrayAdapter adapter3 = new ArrayAdapter<Float>(this,
+                android.R.layout.simple_list_item_1, y);
+        list3.setAdapter(adapter3);
+
     }
+
+
+
+
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
 
