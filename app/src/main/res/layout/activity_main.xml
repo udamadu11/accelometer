@@ -7,16 +7,15 @@
     tools:context=".MainActivity">
 
 
-
     <ListView
         android:id="@+id/list"
-        android:layout_width="123dp"
-        android:layout_height="468dp"
-        android:layout_marginEnd="232dp"
+        android:layout_width="137dp"
+        android:layout_height="456dp"
+        android:layout_marginEnd="220dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.714" />
+        app:layout_constraintVertical_bias="0.68" />
 
     <ListView
         android:id="@+id/list2"
@@ -30,13 +29,13 @@
 
     <ListView
         android:id="@+id/list3"
-        android:layout_width="124dp"
-        android:layout_height="463dp"
-        android:layout_marginEnd="100dp"
+        android:layout_width="120dp"
+        android:layout_height="461dp"
+        android:layout_marginEnd="92dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.701" />
+        app:layout_constraintVertical_bias="0.696" />
 
     <LinearLayout
         android:layout_width="359dp"
@@ -69,6 +68,15 @@
             android:textSize="20dp"
             android:text="T(ms)" />
     </LinearLayout>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="355dp"
+        android:layout_height="40dp"
+        android:backgroundTint="#5778AC"
+        android:text="Click to Part 2"
+        tools:layout_editor_absoluteX="55dp"
+        tools:layout_editor_absoluteY="85dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
