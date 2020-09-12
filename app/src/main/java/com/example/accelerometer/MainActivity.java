@@ -2,6 +2,7 @@ package com.example.accelerometer;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.SharedPreferences;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -9,8 +10,12 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
+
+import com.google.gson.Gson;
 
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
@@ -44,8 +49,27 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         sm = (SensorManager) getSystemService(SENSOR_SERVICE);
         accerometer = sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         sm.registerListener(this, accerometer, SensorManager.SENSOR_DELAY_NORMAL);
+
+        //save data in sharedPreferences
+        Button button = findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                saveData();
+            }
+        });
     }
 
+    private  void saveData(){
+        SharedPreferences sp = getSharedPreferences("sp",MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(x);
+        editor.putString("list",json);
+        editor.commit();
+
+    }
     @Override
     public void onSensorChanged(SensorEvent event) {
 
