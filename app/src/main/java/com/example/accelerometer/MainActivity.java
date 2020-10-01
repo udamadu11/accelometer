@@ -2,6 +2,8 @@ package com.example.accelerometer;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -41,6 +43,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private static DecimalFormat df = new DecimalFormat("0");
     private long timestamp;
 
+//    public static final String PREFS_NAME = "PRODUCT_APP";
+//    public static final String FAVORITES = "Product_Favorite";
+
     // called activity is first created
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +62,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             @Override
             public void onClick(View view) {
                 saveData();
+                Intent i = new Intent(getApplicationContext(),MainActivity2.class);
+                startActivity(i);
             }
         });
     }
@@ -65,8 +72,10 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         SharedPreferences sp = getSharedPreferences("sp",MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
         Gson gson = new Gson();
-        String json = gson.toJson(x);
-        editor.putString("list",json);
+        String json = gson.toJson(z);
+        String json1 = gson.toJson(v);
+        editor.putString("list1",json);
+        editor.putString("list2",json1);
         editor.commit();
 
     }
