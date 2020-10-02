@@ -2,7 +2,6 @@ package com.example.accelerometer;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.hardware.Sensor;
@@ -10,8 +9,6 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
-import android.os.SystemClock;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -43,8 +40,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private static DecimalFormat df = new DecimalFormat("0");
     private long timestamp;
 
-//    public static final String PREFS_NAME = "PRODUCT_APP";
-//    public static final String FAVORITES = "Product_Favorite";
+    public static final String PREFS_NAME = "PRODUCT_APP";
+    public static final String FAVORITES = "PRODUCT_Model";
 
     // called activity is first created
     @Override
@@ -56,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         sm.registerListener(this, accerometer, SensorManager.SENSOR_DELAY_NORMAL);
 
         //save data in sharedPreferences
-        Button button = findViewById(R.id.button);
+        Button button = findViewById(R.id.button2);
         button.setOnClickListener(new View.OnClickListener(){
 
             @Override
@@ -69,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     }
 
     private  void saveData(){
-        SharedPreferences sp = getSharedPreferences("sp",MODE_PRIVATE);
+        SharedPreferences sp = getSharedPreferences("accelerometer",MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
         Gson gson = new Gson();
         String json = gson.toJson(z);
