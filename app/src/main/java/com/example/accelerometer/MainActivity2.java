@@ -24,6 +24,9 @@ public class MainActivity2 extends AppCompatActivity {
     float currentValue = 0 , newValue = 0;
     ArrayList<String> direction = new ArrayList<String>(10);
     private static DecimalFormat df = new DecimalFormat("#.##");
+    int view = R.layout.activity_main;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,7 +87,7 @@ public class MainActivity2 extends AppCompatActivity {
 
         //click button to erase data
         Button button2 = findViewById(R.id.button2);
-        button2.setOnClickListener(new View.OnClickListener(){
+        button2.setOnClickListener( new View.OnClickListener(){
 
             @Override
             public void onClick(View view) {
@@ -98,12 +101,13 @@ public class MainActivity2 extends AppCompatActivity {
         settings.edit().clear().commit();
 
         //Refresh the screen
-        Intent ii = new Intent(MainActivity2.this, MainActivity2.class);
-        finish();
-        overridePendingTransition(0, 0);
-        startActivity(ii);
-        overridePendingTransition(0, 0);
+        refresh();
     }
 
+    public void refresh(){
+        Intent refresh = new Intent(this, MainActivity.class);
+        startActivity(refresh);//Start the same Activity
+        finish();
+    }
 
 }

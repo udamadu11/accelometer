@@ -63,6 +63,15 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 startActivity(i);
             }
         });
+
+        Button button3 = findViewById(id.button3);
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                    Intent refresh1 = new Intent(getApplicationContext(),MainActivity.class);
+                    startActivity(refresh1);//Start the same Activity
+            }
+        });
     }
 
     private  void saveData(){
